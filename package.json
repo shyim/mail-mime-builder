@@ -1,0 +1,31 @@
+{
+  "name": "mail-mime-builder",
+  "version": "1.0.0",
+  "description": "RFC-2822, RFC-2045 and RFC-2049 compliant zero dependency raw email message generator.",
+  "type": "module",
+  "files": [
+    "umd",
+    "es"
+  ],
+  "main": "./umd/index.js",
+  "module": "./es/index.js",
+  "exports": {
+    ".": {
+      "import": "./es/index.js",
+      "require": "./umd/index.js"
+    }
+  },
+  "scripts": {
+    "build": "rm -rf umd dist; bun run build:umd; bun run build:es",
+    "build:umd": "tsc --project tsconfig.json --module umd --outDir \"./umd\"",
+    "build:es": "tsc --project tsconfig.json --outDir \"./es\""
+  },
+  "keywords": [
+    "email-message"
+  ],
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "author": "Soner Sayakci <github@shyim.de>",
+  "license": "MIT"
+}
