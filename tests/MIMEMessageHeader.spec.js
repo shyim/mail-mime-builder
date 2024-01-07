@@ -26,6 +26,7 @@ test('sets and reads headers', () => {
     a.set('To', new Mailbox('to@test.com'))
     a.set('Cc', [new Mailbox('cc@test.com'), new Mailbox('cc2@test.com')])
     a.set('Bcc', [new Mailbox('bcc@test.com'), new Mailbox('bcc2@test.com')])
+    a.set('Reply-To', [new Mailbox('reply-to@test.com')])
     a.set('Subject', 'Testing')
     a.set('Date', 'Wed, 22 Mar 2023 12:12:02 +0000')
     a.set('Message-ID', '<qjuijvi0ie@test.com>')
@@ -38,6 +39,7 @@ test('sets and reads headers', () => {
     expect(adump).toBe(
         'Date: Wed, 22 Mar 2023 12:12:02 +0000' + eol +
         'From: <test@test.com>' + eol +
+        'Reply-To: <reply-to@test.com>' + eol +
         'To: <to@test.com>' + eol +
         'Cc: <cc@test.com>,' + eol +
         ' <cc2@test.com>' + eol +

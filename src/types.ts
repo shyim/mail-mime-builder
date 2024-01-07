@@ -12,7 +12,7 @@ export interface Mailbox {
     isObject(v: unknown): v is object
 }
 
-export type MailboxType = 'To' | 'From' | 'Cc' | 'Bcc'
+export type MailboxType = 'To' | 'From' | 'Cc' | 'Bcc' | 'Reply-To'
 
 export type MailboxAddrObject = {
     addr: string,
