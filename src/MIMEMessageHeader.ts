@@ -1,5 +1,5 @@
-import type {HeaderField} from './types'
-import {toBase64} from './base64'
+import type {HeaderField} from './types.js'
+import {toBase64} from './base64.js'
 
 import {MIMETextError} from './MIMETextError.js'
 import {Mailbox} from './Mailbox.js'

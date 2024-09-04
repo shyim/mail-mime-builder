@@ -1,14 +1,14 @@
 import type {
     MailboxType, Email, MailboxAddrObject,
     MailboxAddrText, Boundaries, ContentHeaders, ContentOptions, AttachmentOptions
-} from './types'
+} from './types.js'
 
-import { toBase64EncodeURI } from './base64'
+import { toBase64EncodeURI } from './base64.js'
 
-import {MIMETextError} from './MIMETextError'
-import {MIMEMessageHeader} from './MIMEMessageHeader'
-import {Mailbox} from './Mailbox'
-import {MIMEMessageContent} from './MIMEMessageContent'
+import {MIMETextError} from './MIMETextError.js'
+import {MIMEMessageHeader} from './MIMEMessageHeader.js'
+import {Mailbox} from './Mailbox.js'
+import {MIMEMessageContent} from './MIMEMessageContent.js'
 
 export class MIMEMessage {
     headers: MIMEMessageHeader
