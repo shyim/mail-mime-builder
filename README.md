@@ -49,7 +49,7 @@ There are more than one method and format to add recipients:
 // adds recipient to To field by default
 msg.setRecipient('Firstname Lastname <first@last.com>')
 // you can specify To, Cc, Bcc
-msg.setRecipient('Firstname Lastname <first@last.com>', {type: 'Cc'})
+msg.setRecipients('Firstname Lastname <first@last.com>', {type: 'Cc'})
 // as object, only addr is required
 msg.setRecipient({addr: 'first@last.com', name: 'Firstname Lastname', type: 'Bcc'})
 // shortcut methods
@@ -57,7 +57,7 @@ msg.setTo('first@last.com')
 msg.setCc('first@last.com')
 msg.setBcc('first@last.com')
 // multiple recipient at once
-msg.setRecipients('test@mail.com', 'Firstname Lastname <first@last.com>', {addr: 'multiple@mail.com'})
+msg.setRecipients(['test@mail.com', 'Firstname Lastname <first@last.com>', {addr: 'multiple@mail.com'}])
 
 // similarly you can set the sender
 msg.setSender('First Last <sender@mail.com>')
