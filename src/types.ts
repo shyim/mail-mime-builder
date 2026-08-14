@@ -1,16 +1,4 @@
-export interface Mailbox {
-    name: string
-    addr: string
-    type: MailboxType
-    reSpecCompliantAddr: RegExp
-    new(input: MailboxAddrObject | MailboxAddrText | Email, config: {type: MailboxType}): Mailbox
-    getAddrDomain(): string
-    dump(): string
-    parse(input: MailboxAddrObject | MailboxAddrText | Email): Mailbox
-    isMailboxAddrText(v: unknown): v is MailboxAddrText
-    isMailboxAddrObject(v: unknown): v is MailboxAddrObject
-    isObject(v: unknown): v is object
-}
+import type { Mailbox } from './Mailbox.js'
 
 export type MailboxType = 'To' | 'From' | 'Cc' | 'Bcc' | 'Reply-To'
 
