@@ -1,23 +1,23 @@
-import {expect, test} from 'bun:test'
-import {MIMEMessageHeader} from '../src/MIMEMessageHeader'
-import {Mailbox} from '../src/Mailbox'
+import {test} from 'node:test'
+import assert from 'node:assert/strict'
+import {Mailbox, MIMEMessageHeader} from 'mail-mime-builder'
 
 const eol = '\r\n'
 
 test('header fields', () => {
     const a = new MIMEMessageHeader()
-    expect(a.isHeaderField({})).toBe(false)
-    expect(a.isHeaderField({value: 1})).toBe(false)
-    expect(a.isHeaderField({name: 'x-header'})).toBe(true)
-    expect(a.isHeaderField({name: 'x-header', invalidProp: true})).toBe(false)
-    expect(a.isHeaderField({name: 'x-header', value: 1, dump: '', required: true, disabled: true, generator: '', custom: ''})).toBe(true)
+    assert.equal(a.isHeaderField({}), false)
+    assert.equal(a.isHeaderField({value: 1}), false)
+    assert.equal(a.isHeaderField({name: 'x-header'}), true)
+    assert.equal(a.isHeaderField({name: 'x-header', invalidProp: true}), false)
+    assert.equal(a.isHeaderField({name: 'x-header', value: 1, dump: '', required: true, disabled: true, generator: '', custom: ''}), true)
 })
 
 test('exports heade fields as object', () => {
     const a = new MIMEMessageHeader()
     const obj = a.toObject()
-    expect(obj.Date).toBe(undefined)
-    expect(obj.Subject).toBe(undefined)
+    assert.equal(obj.Date, undefined)
+    assert.equal(obj.Subject, undefined)
 })
 
 test('sets and reads headers', () => {
@@ -34,9 +34,9 @@ test('sets and reads headers', () => {
     a.setCustom({name: 'X-Something', value: 'thing'})
     const adump = a.dump()
 
-    expect(a.get('From')).toBeInstanceOf(Mailbox)
-    expect(a.get('Subject')).toBe('Testing')
-    expect(adump).toBe(
+    assert.ok(a.get('From') instanceof Mailbox)
+    assert.equal(a.get('Subject'), 'Testing')
+    assert.equal(adump,
         'Date: Wed, 22 Mar 2023 12:12:02 +0000' + eol +
         'From: <test@test.com>' + eol +
         'Reply-To: <reply-to@test.com>' + eol +
@@ -51,8 +51,8 @@ test('sets and reads headers', () => {
         'X-Custom: true' + eol +
         'X-Something: thing'
     )
-    expect(() => a.setCustom('something')).toThrow()
-    expect(() => a.setCustom({name: 'something'})).toThrow()
-    expect(() => a.set('Sender', 'some')).toThrow()
-    expect(() => a.set('From', [new Mailbox('from@test.com'), new Mailbox('from2@test.com')])).toThrow()
+    assert.throws(() => a.setCustom('something'))
+    assert.throws(() => a.setCustom({name: 'something'}))
+    assert.throws(() => a.set('Sender', 'some'))
+    assert.throws(() => a.set('From', [new Mailbox('from@test.com'), new Mailbox('from2@test.com')]))
 })

@@ -1,5 +1,6 @@
-import {expect, test} from 'bun:test'
-import {Mailbox} from '../src/Mailbox'
+import {test} from 'node:test'
+import assert from 'node:assert/strict'
+import {Mailbox} from 'mail-mime-builder'
 
 const input1 = 'test@mail.com'
 const input2 = 'Test Lorem Ipsum <test@mail.com>'
@@ -9,37 +10,37 @@ const input5 = '"LoremIpsum" <test@mail.com>'
 
 test('it accepts objects and texts in a certain format.', () => {
     const mail = new Mailbox(input1)
-    expect(mail.addr).toBe(input1)
-    expect(mail.name).toBe('')
-    expect(mail.type).toBe('To')
+    assert.equal(mail.addr, input1)
+    assert.equal(mail.name, '')
+    assert.equal(mail.type, 'To')
 
     const mail2 = new Mailbox(input2)
-    expect(mail2.addr).toBe('test@mail.com')
-    expect(mail2.name).toBe('Test Lorem Ipsum')
-    expect(mail2.type).toBe('To')
+    assert.equal(mail2.addr, 'test@mail.com')
+    assert.equal(mail2.name, 'Test Lorem Ipsum')
+    assert.equal(mail2.type, 'To')
 
     const mail3 = new Mailbox(input3)
-    expect(mail3.addr).toBe('test@mail.com')
-    expect(mail3.name).toBe('Test Lorem Ipsum')
-    expect(mail3.type).toBe('From')
+    assert.equal(mail3.addr, 'test@mail.com')
+    assert.equal(mail3.name, 'Test Lorem Ipsum')
+    assert.equal(mail3.type, 'From')
 
     const mail4 = new Mailbox(input4)
-    expect(mail4.addr).toBe('test@mail.com')
-    expect(mail4.name).toBe('LoremIpsum')
-    expect(mail4.type).toBe('To')
+    assert.equal(mail4.addr, 'test@mail.com')
+    assert.equal(mail4.name, 'LoremIpsum')
+    assert.equal(mail4.type, 'To')
 
     const mail5 = new Mailbox(input5)
-    expect(mail5.addr).toBe('test@mail.com')
-    expect(mail5.name).toBe('LoremIpsum')
-    expect(mail5.type).toBe('To')
+    assert.equal(mail5.addr, 'test@mail.com')
+    assert.equal(mail5.name, 'LoremIpsum')
+    assert.equal(mail5.type, 'To')
 })
 
 test('gets domain part of the address', () => {
-    expect(new Mailbox('test@mail.com').getAddrDomain()).toBe('mail.com')
+    assert.equal(new Mailbox('test@mail.com').getAddrDomain(), 'mail.com')
 })
 
 test('dumps address', () => {
-    expect(new Mailbox(input1).dump()).toBe('<test@mail.com>')
-    expect(new Mailbox(input2).dump()).toBe('"Test Lorem Ipsum" <test@mail.com>')
-    expect(new Mailbox(input3).dump()).toBe('"Test Lorem Ipsum" <test@mail.com>')
+    assert.equal(new Mailbox(input1).dump(), '<test@mail.com>')
+    assert.equal(new Mailbox(input2).dump(), '"Test Lorem Ipsum" <test@mail.com>')
+    assert.equal(new Mailbox(input3).dump(), '"Test Lorem Ipsum" <test@mail.com>')
 })

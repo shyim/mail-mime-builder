@@ -1,6 +1,6 @@
 {
   "name": "mail-mime-builder",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "RFC-2822, RFC-2045 and RFC-2049 compliant zero dependency raw email message generator.",
   "type": "module",
   "files": [
@@ -18,8 +18,8 @@
     "email-message"
   ],
   "devDependencies": {
-    "tshy": "^3.0.2",
-    "typescript": "^5.3.3"
+    "tshy": "^4.1.3",
+    "typescript": "^7.0.2"
   },
   "author": "Soner Sayakci <github@shyim.de>",
   "license": "MIT",
@@ -46,6 +46,7 @@
   "types": "./dist/commonjs/index.d.ts",
   "module": "./dist/esm/index.js",
   "scripts": {
-    "prepare": "tshy"
+    "prepare": "tshy",
+    "test": "node --test tests/*.spec.js"
   }
 }
