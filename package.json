@@ -1,6 +1,6 @@
 {
   "name": "mail-mime-builder",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "RFC-2822, RFC-2045 and RFC-2049 compliant zero dependency raw email message generator.",
   "type": "module",
   "files": [
